@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal · still stalker 2026</title>
+    <!-- Poppins & Font Awesome 6 (free) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="demo2.css">
+    <style>
+        .portal-page {
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #ffbc6e;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-aura"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+
+    <header>
+        <nav class="navbar fade-up">
+            <div class="logo"><i class="fas fa-code-branch"></i> still stalker</div>
+            <div class="nav-links">
+                <a href="demo.html"><i class="fas fa-home"></i> home</a>
+                <a href="#"><i class="fas fa-fire"></i> streak</a>
+                <a href="#"><i class="fas fa-video"></i> videos</a>
+                <a href="#"><i class="fas fa-calendar-alt"></i> 2026</a>
+                <a href="portal.html" class="active"><i class="fas fa-graduation-cap"></i> portal</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="portal-page">
+        <a href="demo.html" class="back-btn fade-up">
+            <i class="fas fa-arrow-left"></i> back to dashboard
+        </a>
+
+        <section class="portal-section">
+            <div class="login-wrap">
+                <div class="signin-card">
+                    <div class="brand">
+                        <div class="brand-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <h1>Still Stalker Portal</h1>
+                        <p class="muted">Sign in to access your study dashboard</p>
+                    </div>
+
+                    <form id="signinForm" onsubmit="return false;">
+                        <div class="field">
+                            <label>Username</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user"></i>
+                                <input id="username" type="text" placeholder="username" autocomplete="username">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label>Password</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input id="password" type="password" placeholder="password"
+                                    autocomplete="current-password">
+                                <button type="button" id="togglePwd" class="icon-btn"
+                                    aria-label="Toggle password visibility"><i class="fas fa-eye"></i></button>
+                            </div>
+                        </div>
+
+                        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                            <label
+                                style="display:flex;align-items:center;gap:8px;color:#a9c0ff;font-size:0.95rem;"><input
+                                    id="rememberMe" type="checkbox"> Remember me</label>
+                            <a href="#" style="color:#9fb0ff;text-decoration:underline;font-size:0.9rem;">Forgot?</a>
+                        </div>
+
+                        <div style="display:flex;gap:0.6rem;align-items:center;">
+                            <button id="loginBtn" class="glow-btn" style="flex:1;">Sign In</button>
+                            <button id="demoFill" class="cancel-btn" style="width:120px;">Demo</button>
+                        </div>
+                    </form>
+
+                    <div class="alt-actions">
+                        <button id="googleLogin" class="social-google"><i class="fab fa-google"></i> Sign in with
+                            Google</button>
+                        <button id="phoneLogin" class="social-phone"><i class="fas fa-phone"></i> Sign in with
+                            Phone</button>
+                    </div>
+                </div>
+                <div class="signin-illustration">
+                    <div class="illus-card">
+                        <h3>Welcome back</h3>
+                        <p>Continue your learning streak — pick up exactly where you left off.</p>
+                        <div class="sparkles">
+                            <div class="spark" style="--i:0;"></div>
+                            <div class="spark" style="--i:1;"></div>
+                            <div class="spark" style="--i:2;"></div>
+                            <div class="spark" style="--i:3;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p style="text-align:center;color:#9fb0ff;padding:1rem 0;">© 2026 Still Stalker</p>
+    </footer>
+
+    <div class="toast-popup" id="toast"><i class="fas fa-exclamation-triangle"></i> <span id="toastMsg">incorrect
+            password</span></div>
+
+    <script>
+        // Simple animated sign-in behavior (demo-only)
+        (function () {
+            const loginBtn = document.getElementById('loginBtn');
+            const demoBtn = document.getElementById('demoFill');
+            const usr = document.getElementById('username');
+            const pwd = document.getElementById('password');
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            const card = document.querySelector('.signin-card');
+            const togglePwd = document.getElementById('togglePwd');
+            const remember = document.getElementById('rememberMe');
+
+            function showToast(msg) {
+                toastMsg.innerText = msg;
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2600);
+            }
+
+            // Restore remembered username
+            try {
+                const saved = localStorage.getItem('ss_remember');
+                if (saved) { const obj = JSON.parse(saved); if (obj.username) usr.value = obj.username; if (obj.remember) remember.checked = true; }
+            } catch (e) { }
+
+            demoBtn.addEventListener('click', () => {
+                usr.value = 'student'; pwd.value = '2026';
+                usr.focus();
+            });
+
+            // password visibility toggle
+            if (togglePwd) {
+                togglePwd.addEventListener('click', () => {
+                    const is = pwd.getAttribute('type') === 'password';
+                    pwd.setAttribute('type', is ? 'text' : 'password');
+                    togglePwd.innerHTML = is ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
+                });
+            }
+
+            loginBtn.addEventListener('click', () => {
+                const u = (usr.value || '').trim();
+                const p = (pwd.value || '').trim();
+                // demo credentials
+                if (u === 'student' && p === '2026') {
+                    card.classList.add('success');
+                    showToast('Welcome — signing in...');
+                    // store remember preference
+                    try { localStorage.setItem('ss_remember', JSON.stringify({ username: remember.checked ? u : '', remember: remember.checked })); } catch (e) { }
+                    setTimeout(() => location.href = 'demo.html', 900);
+                } else {
+                    // shake card and show error
+                    card.classList.remove('success');
+                    card.classList.add('shake');
+                    showToast('Incorrect username or password');
+                    setTimeout(() => card.classList.remove('shake'), 600);
+                }
+            });
+
+            // Social buttons (demo placeholders)
+            document.getElementById('googleLogin').addEventListener('click', () => showToast('Google sign-in not configured in demo'));
+            document.getElementById('phoneLogin').addEventListener('click', () => showToast('Phone sign-in not configured in demo'));
+
+            // autofocus and small entrance
+            setTimeout(() => usr.focus(), 300);
+        })();
+    </script>
+
+    <!-- AI Help Chat Widget -->
+    <div id="aiHelpButton" title="Ask AI" aria-label="Ask AI"
+        style="position:fixed;right:22px;bottom:22px;z-index:1200;">
+        <button id="openAi"
+            style="width:64px;height:64px;border-radius:999px;border:0;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:white;box-shadow:0 12px 30px rgba(99,102,241,0.25);cursor:pointer;font-size:20px;">🤖</button>
+    </div>
+
+    <div id="aiPanel"
+        style="position:fixed;right:22px;bottom:100px;width:360px;max-width:92vw;background:linear-gradient(180deg,#071029,#0b1222);border-radius:12px;box-shadow:0 20px 60px rgba(2,6,18,0.8);display:none;z-index:1200;overflow:hidden;font-family:Poppins, sans-serif;">
+        <div
+            style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.03);">
+            <div style="display:flex;gap:10px;align-items:center;">
+                <div
+                    style="width:36px;height:36px;border-radius:8px;background:linear-gradient(90deg,#fff,#e6ecff);display:flex;align-items:center;justify-content:center;color:#0b0e1f;font-weight:700;">
+                    AI</div>
+                <div style="font-weight:700;color:#e6ecff;">Study Assistant</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;">
+                <button id="aiClear" title="Clear"
+                    style="background:transparent;border:0;color:#9fb0ff;cursor:pointer">Clear</button>
+                <button id="aiClose" title="Close"
+                    style="background:transparent;border:0;color:#9fb0ff;cursor:pointer">✕</button>
+            </div>
+        </div>
+        <div id="aiMessages"
+            style="padding:12px;max-height:320px;overflow:auto;display:flex;flex-direction:column;gap:8px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);">
+        </div>
+        <div style="padding:10px;border-top:1px solid rgba(255,255,255,0.03);display:flex;gap:8px;align-items:center;">
+            <input id="aiInput" placeholder="Ask a question (e.g. 'how to center div?')"
+                style="flex:1;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#e6ecff;outline:none;">
+            <button id="aiSend" class="glow-btn" style="height:40px;padding:0 12px;">Send</button>
+        </div>
+        <div
+            style="padding:8px 12px;border-top:1px solid rgba(255,255,255,0.02);display:flex;gap:8px;flex-wrap:wrap;background:rgba(255,255,255,0.01);">
+            <button class="ai-suggest" data-q="center div horizontally"
+                style="background:transparent;border:1px solid rgba(255,255,255,0.03);color:#9fb0ff;padding:6px 8px;border-radius:8px;cursor:pointer">Center
+                div</button>
+            <button class="ai-suggest" data-q="flexbox vs grid"
+                style="background:transparent;border:1px solid rgba(255,255,255,0.03);color:#9fb0ff;padding:6px 8px;border-radius:8px;cursor:pointer">Flexbox
+                vs Grid</button>
+            <button class="ai-suggest" data-q="what is a matrix"
+                style="background:transparent;border:1px solid rgba(255,255,255,0.03);color:#9fb0ff;padding:6px 8px;border-radius:8px;cursor:pointer">Matrices</button>
+            <button class="ai-suggest" data-q="reverse string javascript"
+                style="background:transparent;border:1px solid rgba(255,255,255,0.03);color:#9fb0ff;padding:6px 8px;border-radius:8px;cursor:pointer">Reverse
+                string</button>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const openBtn = document.getElementById('openAi');
+            const panel = document.getElementById('aiPanel');
+            const closeBtn = document.getElementById('aiClose');
+            const clearBtn = document.getElementById('aiClear');
+            const sendBtn = document.getElementById('aiSend');
+            const input = document.getElementById('aiInput');
+            const messages = document.getElementById('aiMessages');
+            const suggests = Array.from(document.querySelectorAll('.ai-suggest'));
+
+            function addMessage(text, who = 'ai') {
+                const el = document.createElement('div');
+                el.style.padding = '10px'; el.style.borderRadius = '8px'; el.style.maxWidth = '100%';
+                if (who === 'user') { el.style.background = 'linear-gradient(90deg,rgba(99,102,241,0.12),rgba(99,102,241,0.06))'; el.style.color = '#e6ecff'; el.style.alignSelf = 'flex-end'; el.innerText = text; }
+                else { el.style.background = 'rgba(255,255,255,0.02)'; el.style.color = '#dbe7ff'; el.style.alignSelf = 'flex-start'; el.innerText = text; }
+                messages.appendChild(el); messages.scrollTop = messages.scrollHeight;
+                // persist
+                try { const h = JSON.parse(localStorage.getItem('ai_help_history') || '[]'); h.push({ who, text, ts: Date.now() }); localStorage.setItem('ai_help_history', JSON.stringify(h)); } catch (e) { }
+            }
+
+            function loadHistory() { try { const h = JSON.parse(localStorage.getItem('ai_help_history') || '[]'); h.forEach(m => addMessage(m.text, m.who)); } catch (e) { } }
+
+            function simpleResponder(q) {
+                const s = (q || '').toLowerCase();
+                if (!s) return "Tell me what you want help with — e.g. 'center div' or 'reverse string JS'";
+                if (/center|horizontal|vertical/.test(s)) return "To center a div: for horizontal use `margin: 0 auto;` on a block with width. For both axes, use `display:flex;justify-content:center;align-items:center;` on the parent.";
+                if (/flexbox|grid/.test(s)) return "Flexbox is great for 1D layouts (rows/columns). Grid is powerful for 2D layouts. Use flex for linear components and grid for overall page layout.";
+                if (/matrix|matrices|determinant/.test(s)) return "A matrix is a rectangular array of numbers. You can perform row operations, compute determinants, and solve systems using row reduction or matrix inverses.";
+                if (/reverse.*string|reverse string/.test(s)) return "In JavaScript: `function reverseString(s){ return s.split('').reverse().join(''); }`";
+                if (/python/.test(s)) return "I can help with Python basics. Ask about functions, loops, or string handling (e.g., 'how to reverse a string in python').";
+                // fallback: provide search links
+                return `I don't have a full answer offline. Try searching: https://www.youtube.com/results?search_query=${encodeURIComponent(q)} or https://www.google.com/search?q=${encodeURIComponent(q)}`;
+            }
+
+            openBtn.addEventListener('click', () => { panel.style.display = 'block'; loadHistory(); input.focus(); });
+            closeBtn.addEventListener('click', () => { panel.style.display = 'none'; });
+            clearBtn.addEventListener('click', () => { messages.innerHTML = ''; localStorage.removeItem('ai_help_history'); });
+
+            sendBtn.addEventListener('click', () => { const q = input.value.trim(); if (!q) return; addMessage(q, 'user'); const resp = simpleResponder(q); setTimeout(() => addMessage(resp, 'ai'), 300 + Math.random() * 600); input.value = ''; input.focus(); });
+            input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); sendBtn.click(); } });
+
+            suggests.forEach(b => b.addEventListener('click', () => { input.value = b.dataset.q; sendBtn.click(); }));
+        })();
+    </script>
+
+    <style>
+        /* Page-specific styles for portal sign-in */
+        .login-wrap {
+            display: flex;
+            gap: 2.4rem;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .signin-card {
+            background: linear-gradient(180deg, rgba(10, 12, 25, 0.86), rgba(7, 9, 20, 0.6));
+            padding: 2.5rem;
+            border-radius: 16px;
+            width: 700px;
+            max-width: 820px;
+            min-width: 420px;
+            box-shadow: 0 28px 60px rgba(0, 0, 0, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .signin-card.success {
+            transform: scale(0.995) translateY(-6px);
+            box-shadow: 0 36px 80px rgba(20, 120, 80, 0.08);
+        }
+
+        .signin-card .brand {
+            text-align: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .signin-card .brand h1 {
+            font-size: 1.7rem;
+            margin-top: 0.4rem;
+            letter-spacing: 0.4px;
+        }
+
+        .muted {
+            color: #9fb0ff;
+            font-size: 0.95rem;
+        }
+
+        .field {
+            margin-bottom: 12px;
+        }
+
+        .input-with-icon {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #071028;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .input-with-icon i {
+            color: #7f9aff;
+            width: 22px;
+            text-align: center;
+            font-size: 1.05rem;
+        }
+
+        .input-with-icon input {
+            background: transparent;
+            border: 0;
+            outline: none;
+            color: #e6ecff;
+            width: 100%;
+            font-size: 1rem;
+            padding: 2px 0;
+        }
+
+        .alt-actions {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.2rem;
+        }
+
+        .social-google {
+            flex: 1;
+            background: linear-gradient(90deg, #fff, #f1f5f9);
+            color: #0b0e1f;
+            border-radius: 12px;
+            padding: 12px;
+            border: 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .social-phone {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #e6ecff;
+            border-radius: 12px;
+            padding: 12px;
+            cursor: pointer;
+        }
+
+        .signin-illustration {
+            width: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .illus-card {
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.06), rgba(6, 182, 212, 0.03));
+            padding: 2.5rem;
+            border-radius: 14px;
+            text-align: center;
+            color: #cfe2ff;
+        }
+
+        .illus-card h3 {
+            margin-bottom: 0.6rem;
+        }
+
+        .sparkles {
+            position: relative;
+            height: 60px;
+        }
+
+        .spark {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(90deg, #ffd58c, #7cf596);
+            border-radius: 50%;
+            top: 20px;
+            left: 50%;
+            transform-origin: center;
+            animation: floatSpark 2s infinite;
+            opacity: 0.9;
+        }
+
+        .spark:nth-child(2) {
+            left: 20%;
+            animation-delay: 0.2s;
+        }
+
+        .spark:nth-child(3) {
+            left: 80%;
+            animation-delay: 0.4s;
+        }
+
+        .spark:nth-child(4) {
+            left: 65%;
+            animation-delay: 0.6s;
+        }
+
+        @keyframes floatSpark {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            50% {
+                transform: translateY(-14px) scale(1.25);
+            }
+
+            100% {
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .shake {
+            animation: shake 0.6s;
+        }
+
+        @keyframes shake {
+
+            10%,
+            90% {
+                transform: translateX(-4px);
+            }
+
+            20%,
+            80% {
+                transform: translateX(4px);
+            }
+
+            30%,
+            50%,
+            70% {
+                transform: translateX(-8px);
+            }
+
+            40%,
+            60% {
+                transform: translateX(8px);
+            }
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 40px;
+            top: 28px;
+            color: #cfe2ff;
+            text-decoration: none;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            padding: 10px 14px;
+            border-radius: 999px;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.14);
+        }
+
+        /* small responsive tweaks */
+        @media(max-width:1100px) {
+            .login-wrap {
+                flex-direction: column-reverse;
+                gap: 1rem;
+                padding: 1rem;
+                align-items: center;
+            }
+
+            .signin-illustration {
+                width: 100%;
+            }
+
+            .signin-card {
+                width: 100%;
+                max-width: 700px;
+            }
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home · Still Stalker</title>
+    <link rel="stylesheet" href="demo2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(28, 38, 70, 0.5);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(145deg, #ffbc6e, #4f73f5);
+            border-radius: 5px;
+        }
+
+        /* Logo Styles */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffbc6e;
+            box-shadow: 0 0 15px rgba(255, 188, 110, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .logo-img:hover {
+            transform: scale(1.1) rotate(5deg);
+            border-color: #4f73f5;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffbc6e, #4f73f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 30px;
+            background: rgba(20, 15, 35, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(255, 188, 110, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: #b7c7ff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 6px 12px;
+            border-radius: 25px;
+        }
+
+        .nav-links a i {
+            margin-right: 6px;
+            color: #ffbc6e;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: #ffddaa;
+            background: rgba(255, 188, 110, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a.active {
+            color: #ffddaa;
+            background: rgba(255, 188, 110, 0.15);
+            border: 1px solid rgba(255, 188, 110, 0.3);
+        }
+
+        /* Meditation Icon - Top Right */
+        .meditation-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(145deg, #4f73f5, #9b6eff);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(79, 115, 245, 0.3);
+            animation: meditationFloat 4s ease-in-out infinite;
+        }
+
+        .meditation-icon:hover {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 0 30px rgba(155, 110, 255, 0.6);
+            border-color: #ffbc6e;
+            background: linear-gradient(145deg, #5f83ff, #ab7eff);
+        }
+
+        .meditation-icon i {
+            animation: meditationPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes meditationFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes meditationPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.9;
+            }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 60px 20px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff, #ffbc6e, #4f73f5, #ffbc6e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            animation: titleFloat 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(255, 188, 110, 0.3);
+        }
+
+        @keyframes titleFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .hero-subtitle {
+            color: #b7c7ff;
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-subtitle i {
+            color: #ffbc6e;
+            margin: 0 10px;
+            animation: pulse 2s infinite;
+        }
+
+        /* Floating Code Icons */
+        .floating-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-icons i {
+            position: absolute;
+            color: rgba(255, 188, 110, 0.1);
+            font-size: 3rem;
+            animation: float 15s linear infinite;
+        }
+
+        .floating-icons i:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .floating-icons i:nth-child(2) {
+            top: 20%;
+            right: 8%;
+            animation-delay: 2s;
+        }
+
+        .floating-icons i:nth-child(3) {
+            bottom: 30%;
+            left: 10%;
+            animation-delay: 4s;
+        }
+
+        .floating-icons i:nth-child(4) {
+            bottom: 20%;
+            right: 15%;
+            animation-delay: 6s;
+        }
+
+        .floating-icons i:nth-child(5) {
+            top: 40%;
+            left: 20%;
+            animation-delay: 8s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.1;
+            }
+
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 0.1;
+            }
+        }
+
+        /* Thought Container */
+        .thought-container {
+            background: linear-gradient(145deg, rgba(28, 38, 70, 0.9), rgba(20, 25, 45, 0.95));
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 188, 110, 0.3);
+            border-radius: 40px;
+            padding: 50px;
+            margin: 40px auto;
+            max-width: 900px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 188, 110, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thought-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ffbc6e, #4f73f5, #ffbc6e, #4f73f5);
+            border-radius: 40px;
+            z-index: -1;
+            animation: borderGlow 3s linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes borderGlow {
+
+            0%,
+            100% {
+                filter: hue-rotate(0deg);
+            }
+
+            50% {
+                filter: hue-rotate(30deg);
+            }
+        }
+
+        .thought-text {
+            font-size: 2.2rem;
+            color: #ffddaa;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-weight: 400;
+            text-shadow: 0 0 20px rgba(255, 188, 110, 0.3);
+            animation: glowPulse 3s infinite;
+        }
+
+        @keyframes glowPulse {
+
+            0%,
+            100% {
+                text-shadow: 0 0 20px rgba(255, 188, 110, 0.3);
+            }
+
+            50% {
+                text-shadow: 0 0 40px rgba(79, 115, 245, 0.5);
+            }
+        }
+
+        .thought-author {
+            font-size: 1.4rem;
+            color: #b7c7ff;
+            letter-spacing: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .thought-author i {
+            color: #ffbc6e;
+            font-size: 1.2rem;
+            animation: quoteBounce 2s infinite;
+        }
+
+        @keyframes quoteBounce {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* Languages Section */
+        .languages-section {
+            background: linear-gradient(145deg, rgba(20, 15, 35, 0.8), rgba(15, 10, 25, 0.9));
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 3px solid rgba(255, 215, 140, 0.4);
+            border-radius: 50px;
+            padding: 50px;
+            margin: 40px auto;
+            max-width: 1100px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .languages-section h2 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #ffddaa, #ffbc6e, #4f73f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .languages-section h2 i {
+            background: linear-gradient(135deg, #ffbc6e, #4f73f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 15px;
+            animation: codeSpin 4s linear infinite;
+        }
+
+        @keyframes codeSpin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .languages-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .language-column {
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+        }
+
+        .language-column h3 {
+            font-size: 2rem;
+            color: #ffbc6e;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .language-column h3 i {
+            margin-right: 10px;
+            animation: iconPulse 2s infinite;
+        }
+
+        @keyframes iconPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+                color: #4f73f5;
+            }
+        }
+
+        .language-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffbc6e, transparent);
+        }
+
+        .language-items {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .language-card {
+            background: rgba(28, 38, 70, 0.7);
+            border: 2px solid rgba(95, 122, 192, 0.4);
+            border-radius: 25px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .language-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .language-card:hover {
+            transform: translateX(15px) scale(1.02);
+            border-color: #ffbc6e;
+            box-shadow: 0 15px 30px rgba(255, 188, 110, 0.3);
+            background: rgba(48, 58, 100, 0.9);
+        }
+
+        .language-card:hover::before {
+            left: 100%;
+        }
+
+        .language-icon {
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(145deg, #1e2442, #2a3158);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: #ffbc6e;
+            border: 2px solid #5f7ac0;
+            transition: all 0.3s ease;
+        }
+
+        .language-card:hover .language-icon {
+            transform: rotate(360deg);
+            border-color: #ffbc6e;
+            color: #4f73f5;
+        }
+
+        .language-info {
+            flex: 1;
+        }
+
+        .language-info h4 {
+            font-size: 1.4rem;
+            color: #ffddaa;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .language-card:hover .language-info h4 {
+            color: #ffbc6e;
+            transform: translateX(5px);
+        }
+
+        .language-info p {
+            font-size: 0.95rem;
+            color: #b7c7ff;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4f73f5, #ffbc6e);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Stats Cards */
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 50px auto;
+            max-width: 1000px;
+            padding: 0 20px;
+        }
+
+        .stat-card {
+            background: rgba(28, 38, 70, 0.7);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(95, 122, 192, 0.4);
+            border-radius: 30px;
+            padding: 30px;
+            min-width: 150px;
+            text-align: center;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: #ffbc6e;
+            box-shadow: 0 20px 40px rgba(255, 188, 110, 0.2);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            color: #ffbc6e;
+            margin-bottom: 15px;
+            animation: statIconFloat 3s infinite;
+        }
+
+        @keyframes statIconFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .stat-card .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ffddaa;
+            line-height: 1.2;
+        }
+
+        .stat-card .stat-label {
+            color: #b7c7ff;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Welcome User Display */
+        .welcome-user {
+            position: fixed;
+            top: 20px;
+            right: 120px;
+            background: rgba(28, 38, 70, 0.9);
+            backdrop-filter: blur(10px);
+            border: 2px solid #ffbc6e;
+            border-radius: 50px;
+            padding: 8px 20px;
+            color: #ffddaa;
+            font-weight: 600;
+            z-index: 1000;
+            animation: slideInRight 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            font-size: 0.9rem;
+        }
+
+        .welcome-user i {
+            color: #4f73f5;
+            margin-right: 8px;
+            animation: welcomePulse 2s infinite;
+        }
+
+        @keyframes welcomePulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+                color: #ffbc6e;
+            }
+        }
+
+        /* Call to Action Button */
+        .cta-button {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .cta-btn {
+            background: linear-gradient(145deg, #2e4eb0, #4f73f5);
+            border: none;
+            border-radius: 60px;
+            padding: 20px 50px;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: btnPulse 2s infinite;
+        }
+
+        @keyframes btnPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 10px 30px rgba(79, 115, 245, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 20px 50px rgba(255, 188, 110, 0.5);
+            }
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: linear-gradient(145deg, #3a5ed0, #5f88ff);
+            box-shadow: 0 20px 40px rgba(79, 115, 245, 0.4);
+        }
+
+        .cta-btn i {
+            animation: btnIconMove 1s infinite;
+        }
+
+        @keyframes btnIconMove {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+        }
+
+        /* Animation for cards */
+        .language-card {
+            animation: slideIn 0.5s ease backwards;
+        }
+
+        .language-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .language-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .language-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .language-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .language-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .fade-up {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        /* Logout Button */
+        .logout-btn {
+            background: linear-gradient(145deg, #c94f4f, #ff6b6b);
+            border: none;
+            border-radius: 40px;
+            padding: 8px 20px;
+            color: white;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(201, 79, 79, 0.3);
+            display: none;
+            /* Hidden by default, shown when logged in */
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 107, 107, 0.5);
+        }
+
+        .logout-btn i {
+            margin-right: 6px;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px 20px;
+                gap: 15px;
+            }
+
+            .nav-right {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .thought-text {
+                font-size: 1.6rem;
+            }
+
+            .languages-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .languages-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stats-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .stat-card {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .welcome-user {
+                right: 80px;
+                font-size: 0.8rem;
+                padding: 6px 15px;
+            }
+
+            .meditation-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .thought-text {
+                font-size: 1.3rem;
+            }
+
+            .cta-btn {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nebula"></div>
+    <div class="grid-lines"></div>
+    <div class="stars-container">
+        <div class="star" style="left: 5%; top: 10%; animation-delay: 0s;"></div>
+        <div class="star" style="left: 15%; top: 30%; animation-delay: 0.3s;"></div>
+        <div class="star" style="left: 25%; top: 50%; animation-delay: 0.6s;"></div>
+        <div class="star" style="left: 35%; top: 70%; animation-delay: 0.9s;"></div>
+        <div class="star" style="left: 45%; top: 20%; animation-delay: 1.2s;"></div>
+        <div class="star" style="left: 55%; top: 40%; animation-delay: 1.5s;"></div>
+        <div class="star" style="left: 65%; top: 60%; animation-delay: 1.8s;"></div>
+        <div class="star" style="left: 75%; top: 80%; animation-delay: 2.1s;"></div>
+        <div class="star" style="left: 85%; top: 15%; animation-delay: 2.4s;"></div>
+        <div class="star" style="left: 95%; top: 45%; animation-delay: 2.7s;"></div>
+    </div>
+
+    <!-- Floating Icons Background -->
+    <div class="floating-icons">
+        <i class="fab fa-html5"></i>
+        <i class="fab fa-css3-alt"></i>
+        <i class="fab fa-js"></i>
+        <i class="fab fa-python"></i>
+        <i class="fab fa-node"></i>
+    </div>
+
+    <header>
+        <nav class="navbar fade-up">
+            <div class="logo-container">
+                <img src="https://st3.depositphotos.com/20178602/33464/v/450/depositphotos_334643554-stock-illustration-elegant-alphabet-letters-font.jpg"
+                    alt="Still Stalker" class="logo-img">
+                <span class="logo-text">STILL STALKER</span>
+            </div>
+
+            <div class="nav-right">
+                <div class="nav-links">
+                    <a href="demo.html" class="active"><i class="fas fa-home"></i> Home</a>
+                    <a href="streak.html"><i class="fas fa-fire"></i> Streak</a>
+                    <a href="videos.html"><i class="fas fa-video"></i> Videos</a>
+                    <a href="calendar.html"><i class="fas fa-calendar-alt"></i> 2026</a>
+                    <a href="portal.html"><i class="fas fa-graduation-cap"></i> Portal</a>
+                </div>
+                
+                <!-- Meditation Icon - Top Right with Image -->
+                <div class="meditation-icon" onclick="window.location.href='meditation.html'">
+                    <img src="https://img.pikbest.com/png-images/20250204/abstract-meditation-inspired-yoga-logo-design-for-branding-_11494006.png!bw700" alt="Meditation"
+                        style="width: 30px; height: 70px; border-radius: 50%; object-fit: cover;">
+                </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Welcome User Display - Hidden by default -->
+    <div class="welcome-user" id="welcomeUser" style="display: none;">
+        <i class="fas fa-user-circle"></i>
+        <span id="userName"></span>
+    </div>
+
+    <!-- Logout Button (shown when logged in) -->
+    <button class="logout-btn" id="logoutBtn" onclick="logout()" style="display: none;">
+        <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section fade-up">
+            <h1 class="hero-title">Still Stalker</h1>
+            <p class="hero-subtitle">
+                <i class="fas fa-quote-left"></i>
+                Code. Learn. Grow. Repeat.
+                <i class="fas fa-quote-right"></i>
+            </p>
+        </section>
+
+        <!-- Thought Section -->
+        <section class="thought-container fade-up">
+            <div class="thought-text">
+                "Arise, Awake, and stop not until the goal is reached."
+            </div>
+            <div class="thought-author">
+                <i class="fas fa-quote-left"></i> SWAMI VIVEKANANDA<i class="fas fa-quote-right"></i>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <div class="stats-container">
+            <div class="stat-card fade-up delay-1">
+                <i class="fas fa-code"></i>
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Languages</div>
+            </div>
+            <div class="stat-card fade-up delay-2">
+                <i class="fas fa-rocket"></i>
+                <div class="stat-number">30</div>
+                <div class="stat-label">Day Streak</div>
+            </div>
+            <div class="stat-card fade-up delay-3">
+                <i class="fas fa-video"></i>
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Videos</div>
+            </div>
+            <div class="stat-card fade-up delay-4">
+                <i class="fas fa-trophy"></i>
+                <div class="stat-number">2026</div>
+                <div class="stat-label">Goals</div>
+            </div>
+        </div>
+
+        <!-- Languages Section -->
+        <section class="languages-section fade-up delay-1">
+            <h2><i class="fas fa-code"></i> Tech Stack <i class="fas fa-code"></i></h2>
+
+            <div class="languages-container">
+                <!-- Frontend Column -->
+                <div class="language-column">
+                    <h3><i class="fas fa-paint-brush"></i> Frontend</h3>
+                    <div class="language-items">
+                        <!-- HTML -->
+                        <div class="language-card">
+                            <div class="language-icon">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                            <div class="language-info">
+                                <h4>HTML5</h4>
+                                <p>Structure & Semantics</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 90%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CSS -->
+                        <div class="language-card">
+                            <div class="language-icon">
+                                <i class="fab fa-css3-alt"></i>
+                            </div>
+                            <div class="language-info">
+                                <h4>CSS3</h4>
+                                <p>Styling & Animations</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- JavaScript -->
+                        <div class="language-card">
+                            <div class="language-icon">
+                                <i class="fab fa-js"></i>
+                            </div>
+                            <div class="language-info">
+                                <h4>JavaScript</h4>
+                                <p>Interactivity & Logic</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backend Column -->
+                <div class="language-column">
+                    <h3><i class="fas fa-server"></i> Backend</h3>
+                    <div class="language-items">
+                        <!-- Python -->
+                        <div class="language-card">
+                            <div class="language-icon">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div class="language-info">
+                                <h4>Python</h4>
+                                <p>Django, Flask, AI/ML</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Node.js -->
+                        <div class="language-card">
+                            <div class="language-icon">
+                                <i class="fab fa-node"></i>
+                            </div>
+                            <div class="language-info">
+                                <h4>Node.js</h4>
+                                <p>Express, APIs, Backend</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <div class="cta-button fade-up delay-3">
+            <button class="cta-btn" onclick="window.location.href='portal.html'">
+                <i class="fas fa-graduation-cap"></i> Start Learning Today
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </main>
+
+    <footer>
+        <p><i class="fas fa-skull"></i> still stalker · every footprint counts · 2026 <i class="fas fa-skull"></i></p>
+    </footer>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+
+    <script>
+        // Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyAU4kKxUCPrsUrYgTxrp64s2hiMvXbhEgY",
+            authDomain: "still-stalker.firebaseapp.com",
+            projectId: "
