@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>videos · still stalker</title>
+    <title>videos · Skill Stalker</title>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="demo2.css">
     <style>
@@ -18,6 +19,7 @@
             text-align: center;
             padding: 2rem;
         }
+
         .videos-header h1 {
             font-size: 3.5rem;
             background: linear-gradient(145deg, #ffe68f, #bdd2ff, #d4b0ff);
@@ -27,28 +29,84 @@
         }
 
         .video-card {
-    border: 4px solid rgba(255, 215, 140, 0.5);  /* 4px thick border with gold color */
-    border-radius: 24px;  /* More rounded corners */
-    box-shadow: 0 0 15px rgba(180, 200, 255, 0.3);  /* Add glow effect */
-    /* Keep your existing styles */
-}
+            border: 4px solid rgba(255, 215, 140, 0.5);
+            border-radius: 24px;
+            box-shadow: 0 0 15px rgba(180, 200, 255, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 140, 0.8);
+            box-shadow: 0 0 25px rgba(180, 200, 255, 0.5);
+        }
+
         .videos-header p {
             color: #b7c7ff;
             font-size: 1.2rem;
         }
-        .video-category {
-            margin-bottom: 2rem;
+
+        /* 6-column grid layout */
+        .video-grid-6col {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
-        .category-title {
-            font-size: 1.8rem;
+
+        /* Responsive breakpoints */
+        @media (max-width: 1400px) {
+            .video-grid-6col {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .video-grid-6col {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .video-grid-6col {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .video-grid-6col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .row-title {
+            font-size: 2rem;
             color: #ffddaa;
-            margin-bottom: 1rem;
+            margin: 2rem 0 1rem 0;
             display: flex;
             align-items: center;
             gap: 10px;
+            border-bottom: 2px solid rgba(255, 215, 140, 0.3);
+            padding-bottom: 0.5rem;
         }
-        .category-title i {
+
+        .row-title i {
             color: #ffbc6e;
+            font-size: 2rem;
+        }
+
+        .video-card h3 {
+            margin: 0.8rem 0 0.3rem 0;
+            color: #ffffff;
+            font-size: 1.1rem;
+            padding: 0 0.5rem;
+        }
+
+        .video-card p {
+            color: #b7c7ff;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            padding: 0 0.5rem;
         }
     </style>
 </head>
@@ -79,14 +137,22 @@
         <div class="star" style="left: 97%; top: 58%; animation-delay: 1s; width: 4px; height: 4px;"></div>
     </div>
     <div class="particles">
-        <div class="particle" style="left: 5%; animation-duration: 15s; animation-delay: 0s; width: 12px; height: 12px;"></div>
-        <div class="particle" style="left: 10%; animation-duration: 18s; animation-delay: 1s; width: 8px; height: 8px;"></div>
-        <div class="particle" style="left: 15%; animation-duration: 12s; animation-delay: 2s; width: 14px; height: 14px;"></div>
-        <div class="particle" style="left: 20%; animation-duration: 20s; animation-delay: 3s; width: 10px; height: 10px;"></div>
-        <div class="particle" style="left: 25%; animation-duration: 16s; animation-delay: 0.5s; width: 16px; height: 16px;"></div>
-        <div class="particle" style="left: 30%; animation-duration: 14s; animation-delay: 1.5s; width: 9px; height: 9px;"></div>
-        <div class="particle" style="left: 35%; animation-duration: 17s; animation-delay: 2.5s; width: 11px; height: 11px;"></div>
-        <div class="particle" style="left: 40%; animation-duration: 19s; animation-delay: 3.5s; width: 15px; height: 15px;"></div>
+        <div class="particle"
+            style="left: 5%; animation-duration: 15s; animation-delay: 0s; width: 12px; height: 12px;"></div>
+        <div class="particle" style="left: 10%; animation-duration: 18s; animation-delay: 1s; width: 8px; height: 8px;">
+        </div>
+        <div class="particle"
+            style="left: 15%; animation-duration: 12s; animation-delay: 2s; width: 14px; height: 14px;"></div>
+        <div class="particle"
+            style="left: 20%; animation-duration: 20s; animation-delay: 3s; width: 10px; height: 10px;"></div>
+        <div class="particle"
+            style="left: 25%; animation-duration: 16s; animation-delay: 0.5s; width: 16px; height: 16px;"></div>
+        <div class="particle"
+            style="left: 30%; animation-duration: 14s; animation-delay: 1.5s; width: 9px; height: 9px;"></div>
+        <div class="particle"
+            style="left: 35%; animation-duration: 17s; animation-delay: 2.5s; width: 11px; height: 11px;"></div>
+        <div class="particle"
+            style="left: 40%; animation-duration: 19s; animation-delay: 3.5s; width: 15px; height: 15px;"></div>
     </div>
     <div class="shooting-star" style="top: 20%; animation-delay: 3s;"></div>
     <div class="bg-aura"></div>
@@ -114,118 +180,152 @@
             <h1><i class="fas fa-video"></i> Learning Videos</h1>
             <p>Curated video resources to level up your skills</p>
         </section>
-    
+
         <section class="section">
-            <!-- HTML Fundamentals Category -->
-            <div class="video-category fade-up delay-1">
-                <h2 class="category-title"><i class="fab fa-html5"></i> HTML Fundamentals</h2>
-                <div class="video-grid">
-                    <!-- HTML Basics Video -->
-                    <div class="video-card">
-                        <iframe width="100%" height="200"
-                            src="https://www.youtube.com/embed/HcOc7P5BMi4?si=tSEYiw-jQ261ULHp" title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <h3>HTML Basics</h3>
-                        <p>Learn the fundamentals of HTML</p>
-                    </div>
-    
-                    <!-- Semantic HTML Video -->
-                    <div class="video-card">
-                        <iframe width="100%" height="200"
-                            src="https://www.youtube.com/embed/Pf0LC6Rx9dg?si=cxdJl9Lhuqjnu8Wn" title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <h3>Semantic HTML</h3>
-                        <p>Using semantic tags properly</p>
-                    </div>
-    
-                    <!-- Forms & Inputs Video -->
-                    <div class="video-card">
-                        <iframe width="100%" height="200"
-                            src="https://www.youtube.com/embed/H9zdfZrFUp0?si=1JFQ58gSl3y_knW9" title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <h3>Forms & Inputs</h3>
-                        <p>Creating interactive forms</p>
-                    </div>
+            <!-- ROW 1: HTML & CSS Fundamentals -->
+            <h2 class="row-title fade-up"><i class="fas fa-code"></i>HTML & CSS Fundamentals</h2>
+            <div class="video-grid-6col fade-up">
+                <!-- HTML Basics -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/HcOc7P5BMi4"
+                        title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    <h3>HTML Basics</h3>
+                    <p>Learn HTML fundamentals</p>
+                </div>
+                <!-- Semantic HTML -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/Pf0LC6Rx9dg"
+                        title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    <h3>Semantic HTML</h3>
+                    <p>Using semantic tags</p>
+                </div>
+                <!-- Forms & Inputs -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/H9zdfZrFUp0"
+                        title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    <h3>Forms & Inputs</h3>
+                    <p>Interactive forms</p>
+                </div>
+                <!-- HTML Tables -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/chxLbI0lP94"
+                        title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    <h3>HTML Tables</h3>
+                    <p>Creating tables</p>
+                </div>
+                <!-- CSS Flexbox -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/wsTv9y931o8"
+                        title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    <h3>CSS Flexbox</h3>
+                    <p>Flexible layouts</p>
+                </div>
+                <!-- CSS Grid -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/JYfiaSKeYhE"
+                        title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    <h3>CSS Grid</h3>
+                    <p>Complex layouts</p>
                 </div>
             </div>
-    
-            <!-- CSS Mastery Category -->
-            <div class="video-category fade-up delay-2">
-                <h2 class="category-title"><i class="fab fa-css3-alt"></i> CSS Mastery</h2>
-                <div class="video-grid">
-                    <!-- CSS Flexbox Video -->
-                    <div class="video-card">
-                    <iframe width="100%" height="200" 
-                    src="https://www.youtube.com/embed/wsTv9y931o8?si=c4CCREGZD4Iy9OIF" title="YouTube video player"
-                    frameborder="0"
+
+            <!-- ROW 2: CSS & JavaScript Essentials -->
+            <h2 class="row-title fade-up delay-1"><i class="fab fa-js"></i>  JavaScript and Java </h2>
+            <div class="video-grid-6col fade-up delay-1">
+                <!-- CSS Animations -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/Zg4-uSjxosE?si=dGjVoaqU787I8mYH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </iframe>
+                    <h3>Operation and Conditional Statements</h3>
+                    <p> Javascript </p>
+                </div>
+                <!-- Responsive Design -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/UmRtFFSDSFo?si=TXnI7CN6oiWao4gk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <h3>Loops and Strings</h3>
+                    <p>Javascript</p>
+                </div>
+                <!-- JS Fundamentals -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/P0XMXqDGttU"
+                        title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    <h3>JS Fundamentals</h3>
+                    <p>JavaScript</p>
+                </div>
+                <!-- Async JavaScript -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/UmnCZ7-9yDY?si=YAAb0ukeOAYIHd1B" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <h3>Java Tutorial</h3>
+                    <p>Java Programming</p>
+                </div>
+                <!-- DOM Manipulation -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/NtmULLvsABc?si=GF2sgAhgXq2kersL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <h3>Variables and Data types</h3>
+                    <p>Java Programming</p>
+                </div>
+                <!-- ES6+ Features -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/LkBYLUVEM_c?si=sRcvn9a4b8axPNb3"
+                        title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <h3>CSS Flexbox</h3>
-                        <p>Master flexible box layout</p>
-                    </div>
-    
-                    <!-- CSS Grid Video -->
-                    <div class="video-card">
-                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/JYfiaSKeYhE?si=svXtaJ_P16A69P0T"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <h3>CSS Grid</h3>
-                        <p>Build complex layouts with Grid</p>
-                    </div>
-    
-                    <!-- CSS Animations Video -->
-                    <div class="video-card">
-                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/Bhj4miRkSOc?si=2zLB4x-Lo43NHuOl"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <h3>Animations</h3>
-                        <p>Create stunning animations</p>
-                    </div>
+                    <h3>Keywords & Identifiers</h3>
+                    <p>Java Programming</p>
                 </div>
             </div>
-    
-            <!-- JavaScript Deep Dive Category -->
-            <div class="video-category fade-up delay-3">
-                <h2 class="category-title"><i class="fab fa-js"></i> JavaScript Deep Dive</h2>
-                <div class="video-grid">
-                    <!-- JS Fundamentals Video -->
-                    <div class="video-card">
-                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/P0XMXqDGttU?si=Rt35dy9WrUK-IQDB"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <h3>JS Fundamentals</h3>
-                        <p>Core concepts of JavaScript</p>
-                    </div>
-    
-                    <!-- Async JavaScript Video -->
-                    <div class="video-card">
-                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/d3jXofmQm44?si=MTKsZ2zkFQcDHstg"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <h3>Async JavaScript</h3>
-                        <p>Promises, async/await</p>
-                    </div>
-    
-                    <!-- DOM Manipulation Video -->
-                    <div class="video-card">
-                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/WjxQRfZfZnw?si=ev6DD2-9dCbjd9XT"
-                            title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        <h3>DOM Manipulation</h3>
-                        <p>Interact with the page</p>
-                    </div>
+
+            <!-- ROW 3: Frameworks & Tools -->
+            <h2 class="row-title fade-up delay-2"><i class="fas fa-tools"></i> Backend Languages</h2>
+            <div class="video-grid-6col fade-up delay-2">
+                <!-- React Basics -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/w7ejDZ8SWv8"
+                        title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    <h3>React Fundamentals</h3>
+                    <p>React library basics</p>
                 </div>
+                <!-- Vue.js Basics -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/FB0H3cGkRkg"
+                        title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    <h3>Vue.js Basics</h3>
+                    <p>Getting started with Vue</p>
+                </div>
+                <!-- Angular Basics (NEW) -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/3qBXWUpoPHo"
+                        title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    <h3>Angular Basics</h3>
+                    <p>Introduction to Angular</p>
+                </div>
+                <!-- Git & GitHub -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/RGOj5yH7evk"
+                        title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    <h3>Git & GitHub</h3>
+                    <p>Version control</p>
+                </div>
+                <!-- VS Code Tips -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/ifTF3ags0XI"
+                        title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    <h3>VS Code Tips</h3>
+                    <p>Boost productivity</p>
+                </div>
+                <!-- Chrome DevTools (NEW) -->
+                <div class="video-card">
+                    <iframe width="100%" height="140" src="https://www.youtube.com/embed/gTVpBbFWry8"
+                        title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                    <h3>Chrome DevTools</h3>
+                    <p>Debug like a pro</p>
+                </div>
+            </div>
+
+            <!-- Optional: Add a note about total videos -->
+            <div class="fade-up delay-3" style="text-align: center; margin-top: 2rem; color: #b7c7ff;">
+                <p><i class="fas fa-film"></i> 18 curated videos · 3 rows · 6 columns · full stack journey <i
+                        class="fas fa-film"></i></p>
             </div>
         </section>
     </main>
